@@ -4,7 +4,7 @@
     <section>
         <div class="titlebar">
             <h1>Products</h1>
-            <button>Add Product</button>
+            <a href="/products/create"><button>Add Product</button></a>
         </div>
         <div class="table">
             <div class="table-filter">

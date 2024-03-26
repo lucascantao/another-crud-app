@@ -50,6 +50,14 @@
             output.src = dataURL;
         }
         reader.readAsDataURL(input.files[0]);
+
     }
+    $(function() {
+        $('#price').maskMoney({
+            prefix:'R$',
+            thousands:'.',
+            decimal:','
+        });
+    })
 </script>
 @endsection()
