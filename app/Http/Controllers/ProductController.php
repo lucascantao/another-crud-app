@@ -17,29 +17,22 @@ class ProductController extends Controller
     }
 
     function store(Request $request) {
+        
         $product = new Product;
 
-        
-        $file_name = time() . '.' . request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images'), $file_name);
-        
         $product->name = $request->name;
         $product->description = $request->description;
         $product->quantity = $request->quantity;
+        $file_name = time() . '.' . request()->image->getClientOriginalExtension();
         $product->image = $file_name;
-
-        // $a = array("", "", ".");
-        // $b = array("R$",".",",");
-        // $price = str_replace($b,$a,$request->price);
-
         $product->price = str_replace(array("R$",".",","),array("", "", "."),$request->price);
         $product->category = $request->category;
         
-        // dd($price);
-
         $product->save();
-        return redirect()->route('products.index')->with('success', 'Product Saved');
+
+        request()->image->move(public_path('images'), $file_name);
         
+        return redirect()->route('products.index')->with('success', 'Product Saved');
 
     }
 }
